@@ -519,10 +519,10 @@ git push -u origin feature/fix-formatting
 
 ### ✅ Validation Phase 2
 
-- [ ] Branches `main` et `develop` créées
-- [ ] Protection de branches configurée sur GitHub
-- [ ] Au moins 1 PR créée avec Conventional Commit
-- [ ] Vous comprenez le workflow GitFlow
+- [X] Branches `main` et `develop` créées
+- [X] Protection de branches configurée sur GitHub
+- [X] Au moins 1 PR créée avec Conventional Commit
+- [X] Vous comprenez le workflow GitFlow
 
 ---
 
