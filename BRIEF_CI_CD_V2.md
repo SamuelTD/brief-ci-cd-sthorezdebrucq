@@ -351,11 +351,10 @@ uv run pytest
 
 ### ✅ Validation Phase 1
 
-- [ ] L'application fonctionne localement
-- [ ] Vous avez testé tous les endpoints
-- [ ] `PROBLEMES_DETECTES.md` contient au moins 20 problèmes identifiés
-- [ ] Vous comprenez la structure du projet
-
+- [x] L'application fonctionne localement
+- [x] Vous avez testé tous les endpoints
+- [x] `PROBLEMES_DETECTES.md` contient au moins 20 problèmes identifiés
+- [x] Vous comprenez la structure du projet
 ---
 
 ## 🌿 Phase 2 : Stratégie de Branches & Conventional Commits
