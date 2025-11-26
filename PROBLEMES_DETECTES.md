@@ -1,4 +1,4 @@
-API 
+API
 
 create_item : ne fonctionne pas
 ```bash
@@ -23,7 +23,6 @@ Found 12 errors.
 MYPY
 
 ```bash
-brief-ci-cd-semantic-release-mkdocs git:(ci) ✗ uv run mypy app/   
+brief-ci-cd-semantic-release-mkdocs git:(ci) ✗ uv run mypy app/
 Success: no issues found in 11 source files
 ```
-

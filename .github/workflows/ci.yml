@@ -94,7 +94,7 @@ jobs:
               with:
                   enable-cache: true
                   cache-dependency-glob: "uv.lock"
-                  
+
             - name: Sync dependencies
               run: uv sync
 

@@ -9,8 +9,10 @@ requires-python = ">=3.13"
 # ============================================================================
 dependencies = [
     "bandit>=1.9.2",
+    "detect-secrets>=1.5.0",
     "fastapi[standard]>=0.121.0",
     "mypy>=1.18.2",
+    "pre-commit>=4.4.0",
     "psycopg2-binary>=2.9.11",
     "pytest>=9.0.1",
     "pytest-cov>=7.0.0",
