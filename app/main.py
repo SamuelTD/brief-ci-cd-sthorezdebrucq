@@ -35,7 +35,3 @@ def root() -> dict:
 @app.get("/health")
 def health() -> dict:
     return {"status": "healthy"}
-
-
-secret = "fezffzefzefzlfzhfzfzfjzfzfzfdzgerg54g651fzefg51zeg5g"
-API_KEY = "sk-1234567890abcdef"
