@@ -1057,12 +1057,12 @@ pre-commit:
 
 ### ✅ Validation Phase 4
 
-- [ ] `.pre-commit-config.yaml` complet et fonctionnel
-- [ ] `pre-commit install` exécuté
-- [ ] Tous les hooks passent sur `pre-commit run --all-files`
-- [ ] Vous avez testé un commit → bloqué → corrigé → passé
-- [ ] Pre-commit ajouté à la CI
-- [ ] La majorité des problèmes de qualité sont corrigés
+- [X] `.pre-commit-config.yaml` complet et fonctionnel
+- [X] `pre-commit install` exécuté
+- [X] Tous les hooks passent sur `pre-commit run --all-files`
+- [X] Vous avez testé un commit → bloqué → corrigé → passé
+- [X] Pre-commit ajouté à la CI
+- [X] La majorité des problèmes de qualité sont corrigés
 
 ---
 
