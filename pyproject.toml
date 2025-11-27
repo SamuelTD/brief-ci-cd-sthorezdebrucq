@@ -16,6 +16,7 @@ dependencies = [
     "psycopg2-binary>=2.9.11",
     "pytest>=9.0.1",
     "pytest-cov>=7.0.0",
+    "python-semantic-release>=10.5.2",
     "ruff>=0.14.6",
     "safety>=3.7.0",
     "sqlmodel>=0.0.27",
@@ -58,3 +59,24 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
 addopts = "--strict-markers --cov=app --cov-report=term-missing"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+branch = "main"
+upload_to_repository = false
+upload_to_release = true
+build_command = ""
+push = false
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.branches.develop]
+match = "develop"
+prerelease = true
+
+[tool.semantic_release.remote]
+name = "origin"
+type = "github"
+ignore_token_for_push = false

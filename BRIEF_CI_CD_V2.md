@@ -1217,11 +1217,11 @@ docker run -p 8000:8000 ghcr.io/<votre-username>/items-ci-cd:main
 
 ### ✅ Validation Phase 5
 
-- [ ] `Dockerfile` optimisé créé
-- [ ] Image build et run localement
-- [ ] Workflow `.github/workflows/build.yml` créé
-- [ ] Image pushée sur GHCR
-- [ ] Image pullable et fonctionnelle depuis GHCR
+- [X] `Dockerfile` optimisé créé
+- [X] Image build et run localement
+- [X] Workflow `.github/workflows/build.yml` créé
+- [X] Image pushée sur GHCR
+- [X] Image pullable et fonctionnelle depuis GHCR
 
 ---
 
