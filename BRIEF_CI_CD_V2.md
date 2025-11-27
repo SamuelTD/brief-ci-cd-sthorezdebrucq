@@ -351,11 +351,10 @@ uv run pytest
 
 ### ✅ Validation Phase 1
 
-- [ ] L'application fonctionne localement
-- [ ] Vous avez testé tous les endpoints
-- [ ] `PROBLEMES_DETECTES.md` contient au moins 20 problèmes identifiés
-- [ ] Vous comprenez la structure du projet
-
+- [x] L'application fonctionne localement
+- [x] Vous avez testé tous les endpoints
+- [x] `PROBLEMES_DETECTES.md` contient au moins 20 problèmes identifiés
+- [x] Vous comprenez la structure du projet
 ---
 
 ## 🌿 Phase 2 : Stratégie de Branches & Conventional Commits
@@ -520,10 +519,10 @@ git push -u origin feature/fix-formatting
 
 ### ✅ Validation Phase 2
 
-- [ ] Branches `main` et `develop` créées
-- [ ] Protection de branches configurée sur GitHub
-- [ ] Au moins 1 PR créée avec Conventional Commit
-- [ ] Vous comprenez le workflow GitFlow
+- [X] Branches `main` et `develop` créées
+- [X] Protection de branches configurée sur GitHub
+- [X] Au moins 1 PR créée avec Conventional Commit
+- [X] Vous comprenez le workflow GitFlow
 
 ---
 
@@ -821,12 +820,12 @@ strategy:
 
 ### ✅ Validation Phase 3
 
-- [ ] Workflow `.github/workflows/ci.yml` créé
-- [ ] Tous les jobs (lint, typecheck, security, tests) fonctionnent
-- [ ] La CI s'exécute automatiquement sur chaque push/PR
-- [ ] Au moins 50% des problèmes détectés sont corrigés
-- [ ] Les tests passent
-- [ ] Configuration ruff, mypy, pytest dans `pyproject.toml`
+- [X] Workflow `.github/workflows/ci.yml` créé
+- [X] Tous les jobs (lint, typecheck, security, tests) fonctionnent
+- [X] La CI s'exécute automatiquement sur chaque push/PR
+- [X] Au moins 50% des problèmes détectés sont corrigés
+- [X] Les tests passent
+- [x] Configuration ruff, mypy, pytest dans `pyproject.toml`
 
 ---
 
@@ -1058,12 +1057,12 @@ pre-commit:
 
 ### ✅ Validation Phase 4
 
-- [ ] `.pre-commit-config.yaml` complet et fonctionnel
-- [ ] `pre-commit install` exécuté
-- [ ] Tous les hooks passent sur `pre-commit run --all-files`
-- [ ] Vous avez testé un commit → bloqué → corrigé → passé
-- [ ] Pre-commit ajouté à la CI
-- [ ] La majorité des problèmes de qualité sont corrigés
+- [X] `.pre-commit-config.yaml` complet et fonctionnel
+- [X] `pre-commit install` exécuté
+- [X] Tous les hooks passent sur `pre-commit run --all-files`
+- [X] Vous avez testé un commit → bloqué → corrigé → passé
+- [X] Pre-commit ajouté à la CI
+- [X] La majorité des problèmes de qualité sont corrigés
 
 ---
 
@@ -1162,17 +1161,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
-        uses: 
+        uses:
 
       - name: Log in to GitHub Container Registry
-        uses: 
+        uses:
 
       - name: Extract metadata
         id: meta
-        uses: 
+        uses:
 
       - name: Build and push Docker image
-        uses: 
+        uses:
 
 ```
 
@@ -1218,11 +1217,11 @@ docker run -p 8000:8000 ghcr.io/<votre-username>/items-ci-cd:main
 
 ### ✅ Validation Phase 5
 
-- [ ] `Dockerfile` optimisé créé
-- [ ] Image build et run localement
-- [ ] Workflow `.github/workflows/build.yml` créé
-- [ ] Image pushée sur GHCR
-- [ ] Image pullable et fonctionnelle depuis GHCR
+- [X] `Dockerfile` optimisé créé
+- [X] Image build et run localement
+- [X] Workflow `.github/workflows/build.yml` créé
+- [X] Image pushée sur GHCR
+- [X] Image pullable et fonctionnelle depuis GHCR
 
 ---
 
@@ -1333,20 +1332,20 @@ jobs:
 
 
       - name: Set up uv
-        uses: 
+        uses:
 
       - name: Install dependencies
-        run: 
+        run:
 
       - name: Python Semantic Release
         id: release
-        uses: 
+        uses:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GHCR (if new release)
         if:steps.release.outputs.released == 'true'
-        run: 
+        run:
 ```
 
 **Ce workflow** :
@@ -1760,14 +1759,14 @@ jobs:
 
       - name: Get release version
         id: version
-        run: 
+        run:
 
       - name: Deploy to Azure Container Apps
-        run: 
+        run:
 
 
       - name: Health Check
-        run: 
+        run:
 
       - name: Rollback on failure
         if: failure()
