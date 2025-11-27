@@ -36,9 +36,6 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}           # ID de l'application (stocké dans les secrets)
           private-key: ${{ secrets.PRIVATE_KEY }} # Clé privée de l'app (stockée dans les secrets)
-      - name: Configure Git to use App Token
-        run: |
-            git remote set-url origin https://x-access-token:${{ steps.get_token.outputs.token }}@github.com/${{ github.repository }}.git
 
       - name: Checkout code
         uses: actions/checkout@v6
@@ -58,8 +55,11 @@ jobs:
           # uv tool install : Installe un outil Python en isolation
           # python-semantic-release : Outil pour versionning sémantique automatique
           uv tool install python-semantic-release
+      - name: Configure Git to use App Token
+        run: |
+            git remote set-url origin https://x-access-token:${{ steps.get_token.outputs.token }}@github.com/${{ github.repository }}.git
 
-      # Étape 5: Génère une nouvelle version et publie la release
+        # Étape 5: Génère une nouvelle version et publie la release
       - name: Semantic Versioning
         id: semantic
         env:
