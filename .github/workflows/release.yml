@@ -1,13 +1,10 @@
 name: Semantic Release
 
 on:
-  workflow_run:
-    workflows: ["Workflow CI"]
-    types:
-      - completed
+  push:
     branches:
-      - main
-      - develop
+    - main
+    - develop
 
 permissions:
   contents: write
@@ -17,12 +14,18 @@ permissions:
 
 jobs:
   release:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
+        # Étape 1: Génère un token d'authentification depuis une GitHub App
+      - name: Genarate App Token
+        id: get_token  # ID pour référencer les outputs de cette étape
+        uses: actions/create-github-app-token@v2  # Action officielle pour créer un token
+        with:
+           app-id: ${{ secrets.APP_ID }}           # ID de l'application (stocké dans les secrets)
+           private-key: ${{ secrets.PRIVATE_KEY }} # Clé privée de l'app (stockée dans les secrets)
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v5
@@ -33,17 +36,45 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Python Semantic Release
-        id: release
-        uses: python-semantic-release/python-semantic-release@v10.5.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to GHCR (if new release)
-        if: steps.release.outputs.released == 'true'
+ #Étape 4: Installe Python Semantic Release comme outil
+      - name: Install Python Semantic Release
         run: |
-          echo "🎉 A new release was published: ${{ steps.release.outputs.version }}"
-          # Example placeholder for a container push step if you had one:
-          # docker build -t ghcr.io/${{ github.repository }}:${{ steps.release.outputs.version }} .
-          # echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          # docker push ghcr.io/${{ github.repository }}:${{ steps.release.outputs.version }}
+            # uv tool install : Installe un outil Python en isolation
+            # python-semantic-release : Outil pour versionning sémantique automatique
+            uv tool install python-semantic-release
+
+
+      # Étape 5: Génère une nouvelle version et publie la release
+      - name: Semantic Versioning
+        id: semantic
+        env:
+        # Token nécessaire pour créer des releases sur GitHub
+            GITHUB_TOKEN: ${{ steps.get_token.outputs.token }}
+            GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: |
+            # Configure l'identité Git pour les commits automatiques
+            git config user.name "victor-four[bot]"
+            git config user.email "victor-four[bot]@users.noreply.github.com"
+
+            # uv run : Exécute la commande dans l'environnement de l'outil installé
+            # version --changelog : Détermine la nouvelle version et met à jour le changelog
+            uv run semantic-release version --changelog
+
+            # publish : Crée le tag Git et la release GitHub (uniquement sur main)
+            if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+                echo "📦 Creating GitHub Release (main branch)"
+                uv run semantic-release publish
+            else
+                echo "⏭️ Skipping GitHub Release (develop branch - pre-release only)"
+                # Sur develop, on push juste le tag Git sans créer de GitHub Release
+                git push --follow-tags origin HEAD
+            fi
+
+        # Étape 6: Récupère la version créée pour l'exposer aux autres jobs
+      - name: Get Version
+        id: get_version
+        run: |
+          # Récupère le dernier tag Git (qui correspond à la version créée)
+          VERSION=$(git describe --tags --abbrev=0)
+          # Exporte la version dans les outputs du job
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
