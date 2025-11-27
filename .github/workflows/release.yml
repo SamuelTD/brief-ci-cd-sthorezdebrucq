@@ -36,6 +36,9 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}           # ID de l'application (stocké dans les secrets)
           private-key: ${{ secrets.PRIVATE_KEY }} # Clé privée de l'app (stockée dans les secrets)
+      - name: Configure Git to use App Token
+        run: |
+            git remote set-url origin https://x-access-token:${{ steps.get_token.outputs.token }}@github.com/${{ github.repository }}.git
 
       - name: Checkout code
         uses: actions/checkout@v6
