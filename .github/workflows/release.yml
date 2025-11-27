@@ -2,7 +2,7 @@ name: Semantic Release
 
 on:
   workflow_run:
-    workflows: ["Worklow CI"]
+    workflows: ["Workflow CI"]
     types:
       - completed
     branches:
