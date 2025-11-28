@@ -2,9 +2,18 @@ name: Workflow CI
 
 on:
     pull_request:
-        branches: [main, develop]
-    push:
-        branches: [main, develop]
+        branches: [develop]
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 
 jobs:
     pre-commit:
