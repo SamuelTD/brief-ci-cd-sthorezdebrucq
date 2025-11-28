@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.1.0 (2025-11-28)
+
+### Bug Fixes
+
+- Fix github fuckery #2
+  ([`32c493e`](https://github.com/SamuelTD/brief-ci-cd-sthorezdebrucq/commit/32c493e05d746c063002076bf0585b3d1c64c8f4))
+
+
 ## v1.0.0-rc.2 (2025-11-28)
 
 ### Features
